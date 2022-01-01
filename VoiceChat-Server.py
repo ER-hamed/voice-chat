@@ -5,7 +5,7 @@ from _thread import start_new_thread
 class Server:
     def __init__(self):
         self.host = '0.0.0.0'
-        self.port = 9999
+        self.port = 443
         self.buffer = 2048
         self.clients = []
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
