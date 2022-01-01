@@ -36,8 +36,6 @@ class Server:
         while True:
             try:
                 data = client.recv(self.buffer)
-                if data == ''.encode():
-                    self.close(client, ip)
                 self.broadcast(client, data, ip)
             except socket.error:
                 self.close(client, ip)
