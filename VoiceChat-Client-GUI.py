@@ -9,7 +9,7 @@ class Client:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.top = Tk()
         self.button = Button(command=lambda: self.microphone())
-        self.host = '20.98.207.58'
+        self.host = '0.0.0.0'
         self.port = 443
         self.chunk = 2048
         self.buffer = 2048
