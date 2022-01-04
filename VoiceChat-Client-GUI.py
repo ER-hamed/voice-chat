@@ -9,10 +9,10 @@ class Client:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.top = Tk()
         self.button = Button(command=lambda: self.microphone())
-        self.host = '20.98.207.58'
-        self.port = 443
+        self.host = '176.97.218.224'
+        self.port = 9999
         self.buffer = 512
-        self.rate = 5000
+        self.rate = 10000
         self.enable = True
         self.audio = pyaudio.PyAudio()
         self.playing_stream = self.audio.open(format=pyaudio.paInt16, channels=1, rate=self.rate, output=True,
@@ -41,6 +41,8 @@ class Client:
         while True:
             try:
                 data = self.socket.recv(self.buffer)
+                if data == ''.encode():
+                    self.close('Receive None')
                 self.playing_stream.write(data)
             except socket.error as e:
                 self.close('Error: ' + str(e))
@@ -49,10 +51,12 @@ class Client:
         while True:
             try:
                 data = self.recording_stream.read(self.buffer)
-                if not self.enable:
-                    self.socket.sendall(data)
+                if data == ''.encode():
+                    pass
+                elif not self.enable:
+                    pass
                 else:
-                    continue
+                    self.socket.send(data)
             except socket.error as e:
                 self.close('Error: ' + str(e))
             except KeyboardInterrupt:
