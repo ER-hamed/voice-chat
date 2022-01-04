@@ -5,6 +5,7 @@ from os import system
 while True:
     system('clear')
     system('sudo iptables -L --line-numbers')
+    print('Press enter to exit')
     command = input('Command: ').split(' ')
     if command == ['']:
         exit()
@@ -46,5 +47,26 @@ while True:
     elif command[0] == 'remove' or command[0] == 'r':
         system('sudo iptables -D INPUT -p tcp --dport ' + command[1] + ' -j ACCEPT')
         system('sudo iptables -D INPUT -p tcp --dport ' + command[1] + ' -j DROP')
+    elif command[0] == 'help':
+        print('''------------------------------------------------
+        Opening port:
+        open <port>
+        o <port>
+        
+        ------------------------------------------------
+        Closing port:
+        close <port>
+        c <port>
+        
+        ------------------------------------------------
+        Remove rule:
+        remove <port>
+        r <port>
+        
+        ------------------------------------------------
+        set: open 22, 80, 443 and close all port
+        
+        ------------------------------------------------
+        unset: open 22, 80, 443 and open all port''')
     else:
         print('Command not found')
