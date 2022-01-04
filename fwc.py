@@ -48,25 +48,28 @@ while True:
         system('sudo iptables -D INPUT -p tcp --dport ' + command[1] + ' -j ACCEPT')
         system('sudo iptables -D INPUT -p tcp --dport ' + command[1] + ' -j DROP')
     elif command[0] == 'help':
+        system('clear')
         print('''------------------------------------------------
-        Opening port:
-        open <port>
-        o <port>
+Opening port:
+    open <port>
+    o <port>
         
-        ------------------------------------------------
-        Closing port:
-        close <port>
-        c <port>
+------------------------------------------------
+Closing port:
+    close <port>
+    c <port>
         
-        ------------------------------------------------
-        Remove rule:
-        remove <port>
-        r <port>
+------------------------------------------------
+Remove rule:
+    remove <port>
+    r <port>
         
-        ------------------------------------------------
-        set: open 22, 80, 443 and close all port
+------------------------------------------------
+set: open 22, 80, 443 and close all port
         
-        ------------------------------------------------
-        unset: open 22, 80, 443 and open all port''')
+------------------------------------------------
+unset: open 22, 80, 443 and open all port
+        ''')
+        input('Press enter to back')
     else:
         print('Command not found')
